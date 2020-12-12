@@ -1,0 +1,33 @@
+From 5f6ed01c3eccdd468fcacea89f1d853270f8e34f Mon Sep 17 00:00:00 2001
+From: Maximilian Staab <maximilian.staab@mailbox.org>
+Date: Sat, 12 Dec 2020 21:46:40 +0100
+Subject: [PATCH] removed install options and stdin request
+
+---
+ setup.py | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
+
+diff --git a/setup.py b/setup.py
+index 831864bb8..ff4dbcc0e 100644
+--- a/setup.py
++++ b/setup.py
+@@ -56,15 +56,7 @@ class pylearn2_install(install):
+               "location. If you know what you are doing, and are very sure "
+               "that you want to install Pylearn2 using the `install` "
+               "command instead, please type `install`.\n")
+-        mode = None
+-        while mode not in ['', 'install', 'develop', 'cancel']:
+-            if mode is not None:
+-                print("Please try again")
+-            mode = input("Installation mode: [develop]/install/cancel: ")
+-        if mode in ['', 'develop']:
+-            self.distribution.run_command('develop')
+-        if mode == 'install':
+-            return install.run(self)
++        return install.run(self)
+ cmdclass.update({'install': pylearn2_install})
+ 
+ setup(
+-- 
+2.29.2
+
